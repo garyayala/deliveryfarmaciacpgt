@@ -5,18 +5,36 @@
  */
 package org.farmacio.ui;
 
+import java.util.List;
+import javax.swing.table.AbstractTableModel;
+import org.farmacia.domain.Provincia;
+import org.farmacia.services.UbigeoService;
+import org.springframework.context.ApplicationContext;
+
 /**
  *
  * @author ZaidaPT
  */
 public class UIListarProvincias extends javax.swing.JInternalFrame {
-
+    private ApplicationContext applicationContext;
     /**
      * Creates new form UIListarProvincias
      */
-    public UIListarProvincias() {
+    public UIListarProvincias(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
+        listarProvincias();
     }
+    
+    private void listarProvincias(){
+        UbigeoService ubigeoService = applicationContext.getBean("ubigeoService",UbigeoService.class);
+        List<Provincia> provincias = ubigeoService.listarProvincias();
+        
+        TableModel tableModel = new TableModel(provincias);
+        
+        jTable1.setModel(tableModel);
+    }
+            
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,4 +90,39 @@ public class UIListarProvincias extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+    private class TableModel extends AbstractTableModel{
+        private String[] headers = {"Nombre"
+
+                         };
+        private List<Provincia> data;
+
+        public TableModel(List<Provincia> data){
+            this.data = data ;
+        }
+		
+        @Override
+        public int getColumnCount() {
+                return this.headers.length;
+        }
+
+        @Override
+        public int getRowCount() {
+            return this.data.size();
+        }
+
+        @Override
+        public Object getValueAt(int fila, int columna) {
+            return data.get(fila).getNombre();
+        }
+		
+        @Override
+        public String getColumnName(int column) {
+            return this.headers[column];
+        }
+		
+        public void filterData(List data){
+            this.data = data;
+            fireTableStructureChanged();
+        }
+    }
 }

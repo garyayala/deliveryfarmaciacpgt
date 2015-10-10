@@ -162,41 +162,20 @@ public class UIListarUsuarios extends javax.swing.JInternalFrame {
                 }
                 return obj;
         }
+		
+        @Override
+        public String getColumnName(int column) {
+                return this.headers[column];
+        }	
 
         @Override
-        public void setValueAt(Object value, int rowIndex, int columnIndex) {
-                if(value instanceof Boolean){  
-//	            if(columnIndex == 4){  
-//	            	if(txToAnular==null){
-//	            		data.get(rowIndex).setAnulado(((Boolean)value).booleanValue());
-//	            		
-//	            		txToAnular = data.get(rowIndex);
-//	            	}else{
-//	            		if(txToAnular==data.get(rowIndex)){
-//	            			data.get(rowIndex).setAnulado(false);
-//	            			txToAnular = null;
-//	            		}
-//	            	}
-//	            }  
-			}
-//			fireTableCellUpdated(rowIndex, columnIndex); 
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return columnIndex==4;
         }
 		
-		
-		@Override
-		public String getColumnName(int column) {
-			return this.headers[column];
-		}	
-		
-		@Override
-		public boolean isCellEditable(int rowIndex, int columnIndex) {
-			return columnIndex==4;
-		}
-		
-		
-		public void filterData(List<Usuario> txs){
-			this.data = txs;
-			fireTableStructureChanged();
-		}
-	}
+        public void filterData(List<Usuario> txs){
+                this.data = txs;
+                fireTableStructureChanged();
+        }
+    }
 }

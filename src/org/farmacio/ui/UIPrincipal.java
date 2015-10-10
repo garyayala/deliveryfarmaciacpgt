@@ -64,6 +64,7 @@ public class UIPrincipal extends javax.swing.JFrame {
         jMenu8 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem21 = new javax.swing.JMenuItem();
 
@@ -240,6 +241,14 @@ public class UIPrincipal extends javax.swing.JFrame {
         });
         jMenu9.add(jMenuItem22);
 
+        jMenuItem23.setText("Mostrar");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem23);
+
         jMenu8.add(jMenu9);
 
         jMenu10.setText("Distritos");
@@ -340,6 +349,12 @@ public class UIPrincipal extends javax.swing.JFrame {
         uibc.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        UIListarProvincias uibc = new UIListarProvincias(applicationContext);
+        jDesktopPane1.add(uibc);
+        uibc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -404,6 +419,7 @@ public class UIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
