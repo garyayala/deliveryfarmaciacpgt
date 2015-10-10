@@ -7,16 +7,20 @@ package org.farmacio.ui;
 
 //import com.toedter.calendar.JDateChooser;
 
+import org.springframework.context.ApplicationContext;
+
+
 /**
  *
  * @author ZaidaPT
  */
 public class UIBuscarPedido extends javax.swing.JInternalFrame {
-
+    private ApplicationContext applicationContext;
     /**
      * Creates new form UIMostrarPedido
      */
-    public UIBuscarPedido() {
+    public UIBuscarPedido(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
 
         //JDateChooser dtch_fecha_ing = new JDateChooser();

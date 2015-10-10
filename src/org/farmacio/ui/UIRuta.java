@@ -11,15 +11,18 @@ import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+import org.springframework.context.ApplicationContext;
 
 /**
  *
  * @author Equipo
  */
 public class UIRuta  /*extends javax.swing.JInternalFrame*/{
-
-    public UIRuta() {
+    private ApplicationContext applicationContext;
+    
+    public UIRuta(ApplicationContext applicationContext) {
         initComponents();
+        this.applicationContext = applicationContext;
     }
     
     public void initComponents(){

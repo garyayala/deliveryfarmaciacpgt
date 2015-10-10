@@ -5,19 +5,16 @@
  */
 package org.farmacio.ui;
 
-import org.springframework.context.ApplicationContext;
-
 /**
  *
  * @author ZaidaPT
  */
-public class UIHistorialPedidos extends javax.swing.JInternalFrame {
-    private ApplicationContext applicationContext;
+public class UIListarDistrito extends javax.swing.JInternalFrame {
+
     /**
-     * Creates new form UIHistorialPedidos
+     * Creates new form UIListarDistrito
      */
-    public UIHistorialPedidos(ApplicationContext applicationContext) {
-        this.applicationContext = applicationContext;
+    public UIListarDistrito() {
         initComponents();
     }
 
@@ -30,7 +27,6 @@ public class UIHistorialPedidos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Historial de Pedidos"));
         setClosable(true);
         setMaximizable(true);
 
@@ -38,11 +34,11 @@ public class UIHistorialPedidos extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGap(0, 394, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 278, Short.MAX_VALUE)
+            .addGap(0, 274, Short.MAX_VALUE)
         );
 
         pack();

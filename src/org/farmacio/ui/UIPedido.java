@@ -7,18 +7,20 @@ package org.farmacio.ui;
 
 import java.util.Map;
 import javax.swing.JOptionPane;
+import org.springframework.context.ApplicationContext;
 
 /**
  *
  * @author ZaidaPT
  */
 public class UIPedido extends javax.swing.JInternalFrame {
-
+    private ApplicationContext applicationContext;
     /**
      * Creates new form UIPedido
      */
-    public UIPedido() {
+    public UIPedido(ApplicationContext applicationContext) {
         initComponents();
+        this.applicationContext = applicationContext;
     }
 
     /**
