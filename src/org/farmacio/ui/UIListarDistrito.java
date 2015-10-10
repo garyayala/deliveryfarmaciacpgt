@@ -5,17 +5,55 @@
  */
 package org.farmacio.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.AbstractTableModel;
+import org.farmacia.domain.Distrito;
+import org.farmacia.domain.Provincia;
+import org.farmacia.services.UbigeoService;
+import org.springframework.context.ApplicationContext;
+
 /**
  *
  * @author ZaidaPT
  */
 public class UIListarDistrito extends javax.swing.JInternalFrame {
-
+    private ApplicationContext applicationContext;
     /**
      * Creates new form UIListarDistrito
      */
-    public UIListarDistrito() {
+    public UIListarDistrito(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
+        cargarProvincias();
+    }
+    
+    private void cargarProvincias(){
+        UbigeoService ubigeoService = applicationContext.getBean("ubigeoService",UbigeoService.class);
+        List<Provincia> provincias = ubigeoService.listarProvincias();
+        
+        DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel();
+        
+        if(null != provincias){
+            for(Provincia provincia : provincias){
+                defaultComboBoxModel.addElement(provincia.getNombre());
+            }
+        }
+        
+        jComboBox1.setModel(defaultComboBoxModel);
+    }
+    
+    private void cargarDistritos(String provincia){
+        UbigeoService ubigeoService = applicationContext.getBean("ubigeoService",UbigeoService.class);
+        List<Distrito> distritos = ubigeoService.listarDistritos(provincia);
+        
+        if(null == distritos){
+            distritos = new ArrayList<Distrito>();
+        }
+        
+        TableModel tableModel = new TableModel(distritos);
+        jTable1.setModel(tableModel);
     }
 
     /**
@@ -43,6 +81,11 @@ public class UIListarDistrito extends javax.swing.JInternalFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Listar Distritos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,6 +150,10 @@ public class UIListarDistrito extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.cargarDistritos(jComboBox1.getSelectedItem().toString());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -116,4 +163,51 @@ public class UIListarDistrito extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+    private class TableModel extends AbstractTableModel{
+        private String[] headers = {"Nombre"
+                        ,"Provincia"
+                         };
+        private List<Distrito> data;
+
+        public TableModel(List data){
+            this.data = data ;
+        }
+		
+        @Override
+        public int getColumnCount() {
+                return this.headers.length;
+        }
+
+        @Override
+        public int getRowCount() {
+            return this.data.size();
+        }
+
+        @Override
+        public Object getValueAt(int fila, int columna) {
+            Distrito distrito = data.get(fila);
+            Object o = null;
+            
+            switch(columna){
+                case 0:
+                    o = distrito.getNombre();
+                    break;
+                case 1:
+                    o = distrito.getProvincia().getNombre();
+                    break;
+            }
+            
+            return o;
+        }
+		
+        @Override
+        public String getColumnName(int column) {
+            return this.headers[column];
+        }
+		
+        public void filterData(List data){
+            this.data = data;
+            fireTableStructureChanged();
+        }
+    }
 }

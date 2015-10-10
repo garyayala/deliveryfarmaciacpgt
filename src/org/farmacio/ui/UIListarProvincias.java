@@ -96,7 +96,7 @@ public class UIListarProvincias extends javax.swing.JInternalFrame {
                          };
         private List<Provincia> data;
 
-        public TableModel(List<Provincia> data){
+        public TableModel(List data){
             this.data = data ;
         }
 		

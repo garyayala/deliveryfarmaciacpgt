@@ -39,13 +39,13 @@ public class IUbigeoDAO implements UbigeoDAO{
     }
 
     @Override
-    public List<Distrito> listarDistritos(Integer provinciaId) {
+    public List<Distrito> listarDistritos(String provinciaId) {
         List<Distrito> distritos = null;
         
         try{
             Query query = conexion.getDb().query();
-            query.constrain(Provincia.class);
-            query.descend("id").constrain(provinciaId).equal();
+            query.constrain(Distrito.class);
+            query.descend("provincia").descend("nombre").constrain(provinciaId).equal();
             
             distritos = query.execute();
         }catch(Exception ex){

@@ -5,8 +5,11 @@
  */
 package org.farmacio.ui;
 
+import java.util.List;
 import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import org.farmacia.domain.Provincia;
 import org.farmacia.services.UbigeoService;
 import org.springframework.context.ApplicationContext;
 
@@ -22,8 +25,23 @@ public class UIDistrito extends javax.swing.JInternalFrame {
     public UIDistrito(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
         initComponents();
+        cargarProvincias();
     }
 
+    private void cargarProvincias(){
+        UbigeoService ubigeoService = applicationContext.getBean("ubigeoService",UbigeoService.class);
+        List<Provincia> provincias = ubigeoService.listarProvincias();
+        
+        DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel();
+        
+        if(null != provincias){
+            for(Provincia provincia : provincias){
+                defaultComboBoxModel.addElement(provincia.getNombre());
+            }
+        }
+        
+        jComboBox1.setModel(defaultComboBoxModel);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -149,9 +167,9 @@ public class UIDistrito extends javax.swing.JInternalFrame {
         Map<String,Object> response = ubigeoService.registrarDistrito(jTextField2.getText(), jComboBox1.getSelectedItem().toString());
         
         if(Boolean.parseBoolean(response.get("status").toString())){
-            JOptionPane.showMessageDialog(this,response.get("message"),"Registro",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"El distrito se registró exitosamente","Registro",JOptionPane.INFORMATION_MESSAGE);
         }else{
-            JOptionPane.showMessageDialog(this, "Hubo un error al registrar el distrito","Registro",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,response.get("message"),"Registro",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

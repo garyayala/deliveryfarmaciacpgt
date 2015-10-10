@@ -67,6 +67,7 @@ public class UIPrincipal extends javax.swing.JFrame {
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -261,6 +262,14 @@ public class UIPrincipal extends javax.swing.JFrame {
         });
         jMenu10.add(jMenuItem21);
 
+        jMenuItem24.setText("Reportar");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem24);
+
         jMenu8.add(jMenu10);
 
         jMenuBar1.add(jMenu8);
@@ -355,6 +364,12 @@ public class UIPrincipal extends javax.swing.JFrame {
         uibc.setVisible(true);
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        UIListarDistrito uibc = new UIListarDistrito(applicationContext);
+        jDesktopPane1.add(uibc);
+        uibc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -420,6 +435,7 @@ public class UIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

@@ -26,7 +26,7 @@ public class UbigeoService {
         return ubigeoDAO.listarProvincias();
     }
     
-    public List<Distrito> listarDistritos(Integer provinciaId){
+    public List<Distrito> listarDistritos(String provinciaId){
         return ubigeoDAO.listarDistritos(provinciaId);
     }
     
