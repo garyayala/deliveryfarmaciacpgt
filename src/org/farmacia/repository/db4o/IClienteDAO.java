@@ -9,22 +9,24 @@ import java.util.List;
 import org.farmacia.domain.Cliente;
 import org.farmacia.repository.ClienteDAO;
 import org.farmacia.repository.util.Conexion;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author Equipo
  */
-public class IClienteDAO extends Conexion implements ClienteDAO{
-
+public class IClienteDAO implements ClienteDAO{
+    private Conexion conexion;
+    
     @Override
     public void registrar(Cliente cliente) {
         try{
-            getDb().store(cliente);
-            getDb().commit();
+            conexion.getDb().store(cliente);
+            conexion.getDb().commit();
         }catch(Exception e){
-            System.out.println("Excepcion0: "+e.getMessage());
+            System.out.println("Excepcion: "+e.getMessage());
         }finally{
-            getDb().close();
+            conexion.getDb().close();
         }
     }
 
@@ -43,4 +45,8 @@ public class IClienteDAO extends Conexion implements ClienteDAO{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Autowired
+    public void setConexion(Conexion conexion) {
+        this.conexion = conexion;
+    }
 }
