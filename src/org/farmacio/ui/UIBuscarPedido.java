@@ -40,6 +40,7 @@ public class UIBuscarPedido extends javax.swing.JInternalFrame {
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
         jDateChooser4 = new com.toedter.calendar.JDateChooser();
 
+        setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar Pedidos"));
         setClosable(true);
         setMaximizable(true);
 
@@ -87,7 +88,7 @@ public class UIBuscarPedido extends javax.swing.JInternalFrame {
                         .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jButton1)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

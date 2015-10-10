@@ -33,6 +33,7 @@ public class UIBuscarMedicamento extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar Medicamentos"));
         setClosable(true);
         setMaximizable(true);
 
@@ -68,7 +69,7 @@ public class UIBuscarMedicamento extends javax.swing.JInternalFrame {
                         .addComponent(jTextField1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

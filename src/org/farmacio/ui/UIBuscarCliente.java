@@ -35,6 +35,7 @@ public class UIBuscarCliente extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
 
+        setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar Cliente"));
         setClosable(true);
         setMaximizable(true);
 
@@ -78,7 +79,7 @@ public class UIBuscarCliente extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
