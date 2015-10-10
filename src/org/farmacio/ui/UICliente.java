@@ -317,8 +317,6 @@ public class UICliente extends javax.swing.JInternalFrame {
         clienteNuevo.setDni(txtDNI.getText());
         clienteNuevo.setTelefono(txtTelefono.getText());
         clienteNuevo.setFecha_apertura(new Date());
-        ControladorCliente cc = new ControladorCliente();
-        cc.nuevoCliente( clienteNuevo);
         
         if(null != applicationContext){
             ClienteService clienteService = applicationContext.getBean("clienteService",ClienteService.class);

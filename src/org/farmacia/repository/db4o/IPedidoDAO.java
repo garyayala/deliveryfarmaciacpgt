@@ -9,13 +9,16 @@ import java.util.Date;
 import java.util.List;
 import org.farmacia.domain.Pedido;
 import org.farmacia.repository.PedidoDAO;
+import org.farmacia.repository.util.Conexion;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author Equipo
  */
 public class IPedidoDAO implements PedidoDAO{
-
+    private Conexion conexion;
+    
     @Override
     public void registrar(Pedido pedido) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -36,4 +39,8 @@ public class IPedidoDAO implements PedidoDAO{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    @Autowired
+    public void setConexion(Conexion conexion) {
+        this.conexion = conexion;
+    }
 }

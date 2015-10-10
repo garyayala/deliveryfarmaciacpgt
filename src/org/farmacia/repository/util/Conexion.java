@@ -16,10 +16,15 @@ import com.db4o.Db4o;
 
 public class Conexion {
     private ObjectContainer db;
+
+    public Conexion() {
+        this.connectionDB();
+    }
+    
     
     public ObjectContainer connectionDB(){
         db = Db4oEmbedded.openFile(Db4oEmbedded
-                .newConfiguration(), "C:\\bd\\plazapoints.db");
+                .newConfiguration(), "D:\\upao\\documents\\poo\\plazapoints.db");
         
         return db;
     }
