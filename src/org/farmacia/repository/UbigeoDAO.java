@@ -16,4 +16,6 @@ import org.farmacia.domain.Provincia;
 public interface UbigeoDAO {
     List<Provincia> listarProvincias();
     List<Distrito> listarDistritos(Integer provinciaId);
+    void registrarProvincia(Provincia provincia);
+    void registrarDistrito(Distrito distrito);
 }
