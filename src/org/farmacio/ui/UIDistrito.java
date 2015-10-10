@@ -41,6 +41,8 @@ public class UIDistrito extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de Distrito"));
+        setClosable(true);
+        setMaximizable(true);
 
         jLabel1.setText("ID:");
 

@@ -7,6 +7,8 @@
         <TitledBorder title="Registro de Distrito"/>
       </Border>
     </Property>
+    <Property name="closable" type="boolean" value="true"/>
+    <Property name="maximizable" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
