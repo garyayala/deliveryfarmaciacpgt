@@ -32,7 +32,7 @@ public class IUbigeoDAO implements UbigeoDAO{
         }catch(Exception ex){
             
         }finally{
-            conexion.getDb().close();
+//            conexion.getDb().close();
         }
 
         return provincias;
@@ -51,7 +51,7 @@ public class IUbigeoDAO implements UbigeoDAO{
         }catch(Exception ex){
             
         }finally{
-            conexion.getDb().close();
+//            conexion.getDb().close();
         }
 
         return distritos;
@@ -71,7 +71,7 @@ public class IUbigeoDAO implements UbigeoDAO{
             System.out.println("Excepction: "+e.getMessage());
             e.printStackTrace();
         }finally{
-            conexion.getDb().close();
+//            conexion.getDb().close();
         }
     }
 
@@ -83,7 +83,7 @@ public class IUbigeoDAO implements UbigeoDAO{
         }catch(Exception e){
             System.out.println("Excepcion: "+e.getMessage());
         }finally{
-            conexion.getDb().close();
+//            conexion.getDb().close();
         }
     }
  

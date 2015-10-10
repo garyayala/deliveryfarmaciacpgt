@@ -5,17 +5,26 @@
  */
 package org.farmacio.ui;
 
+import java.util.List;
+import javax.swing.table.AbstractTableModel;
+import org.farmacia.domain.Usuario;
+import org.farmacia.services.UsuarioService;
+import org.springframework.context.ApplicationContext;
+
 /**
  *
  * @author ZaidaPT
  */
 public class UIListarUsuarios extends javax.swing.JInternalFrame {
-
+    private ApplicationContext applicationContext;
+    private TableModel tableModel;
     /**
      * Creates new form UIListarUsuarios
      */
-    public UIListarUsuarios() {
+    public UIListarUsuarios(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
+        listarUsuarios();
     }
 
     /**
@@ -53,6 +62,11 @@ public class UIListarUsuarios extends javax.swing.JInternalFrame {
         jLabel1.setText("Nombre usuario:");
 
         jButton1.setText("Listar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,6 +102,18 @@ public class UIListarUsuarios extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void listarUsuarios(){
+        UsuarioService usuarioService = applicationContext.getBean("usuarioService",UsuarioService.class);
+        List<Usuario> usuarios = usuarioService.listar();
+        System.out.println("usuarios:"+usuarios);
+        tableModel = new TableModel(usuarios);
+        
+        jTable1.setModel(tableModel);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -96,4 +122,81 @@ public class UIListarUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    
+    private class TableModel extends AbstractTableModel{
+        private String[] headers = {"Nombre"
+                         ,"Apellidos"
+                         ,"Usuario"
+                         };
+        private List<Usuario> data;
+
+        public TableModel(List<Usuario> data){
+            this.data = data ;
+        }
+		
+        @Override
+        public int getColumnCount() {
+                return this.headers.length;
+        }
+
+        @Override
+        public int getRowCount() {
+                return this.data.size();
+        }
+
+        @Override
+        public Object getValueAt(int fila, int columna) {
+                Object obj = null;
+                Usuario usuario = data.get(fila);
+
+                switch(columna){
+                    case 0:
+                        obj = usuario.getNombre();
+                        break;
+                    case 1:
+                        obj = usuario.getApellidos();
+                        break;  
+                    case 2:
+                        obj = usuario.getUsuario();
+                        break;
+                }
+                return obj;
+        }
+
+        @Override
+        public void setValueAt(Object value, int rowIndex, int columnIndex) {
+                if(value instanceof Boolean){  
+//	            if(columnIndex == 4){  
+//	            	if(txToAnular==null){
+//	            		data.get(rowIndex).setAnulado(((Boolean)value).booleanValue());
+//	            		
+//	            		txToAnular = data.get(rowIndex);
+//	            	}else{
+//	            		if(txToAnular==data.get(rowIndex)){
+//	            			data.get(rowIndex).setAnulado(false);
+//	            			txToAnular = null;
+//	            		}
+//	            	}
+//	            }  
+			}
+//			fireTableCellUpdated(rowIndex, columnIndex); 
+        }
+		
+		
+		@Override
+		public String getColumnName(int column) {
+			return this.headers[column];
+		}	
+		
+		@Override
+		public boolean isCellEditable(int rowIndex, int columnIndex) {
+			return columnIndex==4;
+		}
+		
+		
+		public void filterData(List<Usuario> txs){
+			this.data = txs;
+			fireTableStructureChanged();
+		}
+	}
 }

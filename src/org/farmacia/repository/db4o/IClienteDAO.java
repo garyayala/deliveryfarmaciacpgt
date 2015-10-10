@@ -26,7 +26,7 @@ public class IClienteDAO implements ClienteDAO{
         }catch(Exception e){
             System.out.println("Excepcion: "+e.getMessage());
         }finally{
-            conexion.getDb().close();
+//            conexion.getDb().close();
         }
     }
 

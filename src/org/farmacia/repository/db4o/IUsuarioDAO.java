@@ -6,6 +6,9 @@
 package org.farmacia.repository.db4o;
 
 import com.db4o.ObjectSet;
+import com.db4o.query.Query;
+import java.util.List;
+import org.farmacia.domain.Provincia;
 import org.farmacia.domain.Usuario;
 import org.farmacia.repository.UsuarioDAO;
 import org.farmacia.repository.util.Conexion;
@@ -29,7 +32,7 @@ public class IUsuarioDAO implements UsuarioDAO{
         }catch(Exception e){
             System.out.println("Excepcion: "+e.getMessage());
         }finally{
-            conexion.getDb().close();
+//            conexion.getDb().close();
         }
         
         return false;
@@ -48,8 +51,26 @@ public class IUsuarioDAO implements UsuarioDAO{
         }catch(Exception e){
             System.out.println("Excepcion: "+e.getMessage());
         }finally{
-            conexion.getDb().close();
+//            conexion.getDb().close();
         }
+    }
+
+    @Override
+    public List<Usuario> listar() {
+        List<Usuario> list = null;
+        
+        try{
+            Query query = conexion.getDb().query();
+            query.constrain(Usuario.class);
+            
+            list = query.execute();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+//            conexion.getDb().close();
+        }
+
+        return list;
     }
     
     
