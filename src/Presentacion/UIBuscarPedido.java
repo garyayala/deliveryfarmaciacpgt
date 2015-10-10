@@ -5,7 +5,7 @@
  */
 package Presentacion;
 
-import com.toedter.calendar.JDateChooser;
+//import com.toedter.calendar.JDateChooser;
 
 /**
  *
@@ -19,8 +19,8 @@ public class UIBuscarPedido extends javax.swing.JInternalFrame {
     public UIBuscarPedido() {
         initComponents();
 
-        JDateChooser dtch_fecha_ing = new JDateChooser();
-        getContentPane().add(dtch_fecha_ing);
+        //JDateChooser dtch_fecha_ing = new JDateChooser();
+        //getContentPane().add(dtch_fecha_ing);
     }
 
     /**
