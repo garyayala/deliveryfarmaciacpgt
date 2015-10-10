@@ -5,16 +5,19 @@
  */
 package org.farmacio.ui;
 
+import org.springframework.context.ApplicationContext;
+
 /**
  *
  * @author ZaidaPT
  */
 public class UIHistorialPedidos extends javax.swing.JInternalFrame {
-
+    private ApplicationContext applicationContext;
     /**
      * Creates new form UIHistorialPedidos
      */
-    public UIHistorialPedidos() {
+    public UIHistorialPedidos(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
     }
 

@@ -28,7 +28,8 @@ public class UILogin extends javax.swing.JFrame {
     /**
      * Creates new form UILogin
      */
-    public UILogin() {
+    public UILogin(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
     }
 

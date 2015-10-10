@@ -5,16 +5,19 @@
  */
 package org.farmacio.ui;
 
+import org.springframework.context.ApplicationContext;
+
 /**
  *
  * @author ZaidaPT
  */
 public class UIListarProvincias extends javax.swing.JInternalFrame {
-
+    private ApplicationContext applicationContext;
     /**
      * Creates new form UIListarProvincias
      */
-    public UIListarProvincias() {
+    public UIListarProvincias(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
     }
 

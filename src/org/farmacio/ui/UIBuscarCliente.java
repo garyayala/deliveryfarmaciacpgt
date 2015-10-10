@@ -5,16 +5,19 @@
  */
 package org.farmacio.ui;
 
+import org.springframework.context.ApplicationContext;
+
 /**
  *
  * @author ZaidaPT
  */
 public class UIBuscarCliente extends javax.swing.JInternalFrame {
-
+    private ApplicationContext applicationContext;
     /**
      * Creates new form UIBuscarCliente
      */
-    public UIBuscarCliente() {
+    public UIBuscarCliente(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
     }
 

@@ -21,7 +21,8 @@ public class UICliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form UIPrueba
      */
-    public UICliente() {
+    public UICliente(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
     }
     
