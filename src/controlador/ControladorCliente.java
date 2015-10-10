@@ -6,8 +6,8 @@
 
 package controlador;
 import com.db4o.*;
-import domain.Cliente;
-import bd.Conexion;
+import org.farmacia.domain.Cliente;
+import org.farmacia.repository.util.Conexion;
 /**
  *
  * @author bruno
