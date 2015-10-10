@@ -121,6 +121,8 @@ public class UILogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(null == applicationContext){
             JOptionPane.showMessageDialog(this, "Hubo un error al conectarse con el servidor","Ingreso",JOptionPane.ERROR_MESSAGE);
+            jTextField1.setText("");
+            jPasswordField1.setText("");
         }else{
             UsuarioService usuarioService = applicationContext.getBean("usuarioService",UsuarioService.class);
             if(usuarioService.login(jTextField1.getText(), jPasswordField1.getText())){

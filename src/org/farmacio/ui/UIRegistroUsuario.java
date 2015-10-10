@@ -209,6 +209,10 @@ public class UIRegistroUsuario extends javax.swing.JInternalFrame {
         
         if(Boolean.parseBoolean(response.get("status").toString())){
             JOptionPane.showMessageDialog(this, "El usuario se registro exitosamente","Ingreso",JOptionPane.INFORMATION_MESSAGE);
+            jTextField3.setText("");
+            jTextField8.setText("");
+            jTextField6.setText("");
+            jPasswordField2.setText("");
         }else{
             JOptionPane.showMessageDialog(this, response.get("message"),"Ingreso",JOptionPane.ERROR_MESSAGE);
         }

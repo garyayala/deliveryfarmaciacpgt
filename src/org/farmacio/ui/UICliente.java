@@ -309,9 +309,19 @@ public class UICliente extends javax.swing.JInternalFrame {
         Map<String,Object> response = null;
         if(Boolean.parseBoolean(response.get("status").toString())){
             JOptionPane.showMessageDialog(this, "Hubo un error al guardar los datos","Registro",JOptionPane.INFORMATION_MESSAGE);
+            txtNombre.setText("");
+            txtApellido.setText("");
+            txtDireccion.setText("");
+            txtDNI.setText("");
+            txtRUC.setText("");
+            txtTelefono.setText("");
+            txtCelular.setText("");
         }else{
             JOptionPane.showMessageDialog(this,response.get("message"),"Registro",JOptionPane.ERROR_MESSAGE);
         }
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
