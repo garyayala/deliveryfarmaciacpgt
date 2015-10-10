@@ -1,6 +1,7 @@
 package org.farmacia.services;
 
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import org.farmacia.domain.Cliente;
 import org.farmacia.repository.ClienteDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,22 @@ import org.springframework.stereotype.Service;
 public class ClienteService {
     private @Autowired ClienteDAO clienteDAO;
     
-    public void nuevoCliente( Cliente cliente){
-        cliente.setFechaRegistro(null);
-        clienteDAO.registrar(cliente);
+    public Map<String,Object> nuevoCliente( Cliente cliente){
+        Map<String,Object> data = new HashMap<String,Object>();
+        
+        try{
+            cliente.setFechaRegistro(null);
+            clienteDAO.registrar(cliente);
+            
+            data.put("status", true);
+        }catch(Exception ex){
+            ex.printStackTrace();
+            
+            data.put("status", false);
+            data.put("message", "Hubo un error al registrar al cliente:"+ex.getMessage());
+        }
+        
+        return data;
+        
     }
 }

@@ -294,9 +294,9 @@ public class UICliente extends javax.swing.JInternalFrame {
         clienteNuevo.setFecha_apertura(new Date());
         
         ClienteService clienteService = applicationContext.getBean("clienteService",ClienteService.class);
-        clienteService.nuevoCliente(clienteNuevo);
 
-        Map<String,Object> response = null;
+        Map<String,Object> response = clienteService.nuevoCliente(clienteNuevo);
+
         if(Boolean.parseBoolean(response.get("status").toString())){
             JOptionPane.showMessageDialog(this, "El Cliente fue registrado exitosamente","Registro",JOptionPane.INFORMATION_MESSAGE);
             txtNombre.setText("");
