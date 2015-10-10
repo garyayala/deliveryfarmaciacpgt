@@ -5,10 +5,13 @@
  */
 package org.farmacia.repository;
 
+import org.farmacia.domain.Usuario;
+
 /**
  *
  * @author Equipo
  */
 public interface UsuarioDAO {
-    
+    boolean login(Usuario usuario);
+    void registrar(Usuario usuario);
 }

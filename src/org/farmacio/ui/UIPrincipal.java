@@ -5,16 +5,20 @@
  */
 package org.farmacio.ui;
 
+import org.farmacia.repository.util.Conexion;
+import org.springframework.context.ApplicationContext;
+
 /**
  *
  * @author ZaidaPT
  */
 public class UIPrincipal extends javax.swing.JFrame {
-
+    private ApplicationContext applicationContext;
     /**
      * Creates new form UIPrincipal
      */
-    public UIPrincipal() {
+    public UIPrincipal(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
     }
 
@@ -65,6 +69,11 @@ public class UIPrincipal extends javax.swing.JFrame {
         jMenuItem12.setText("jMenuItem12");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                cierreVentana(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -221,7 +230,7 @@ public class UIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        UIRegistroUsuario uiu = new UIRegistroUsuario();
+        UIRegistroUsuario uiu = new UIRegistroUsuario(applicationContext);
         jDesktopPane1.add(uiu);
         uiu.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -249,6 +258,13 @@ public class UIPrincipal extends javax.swing.JFrame {
         jDesktopPane1.add(uibc);
         uibc.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void cierreVentana(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_cierreVentana
+        if(null != applicationContext){
+            Conexion con = applicationContext.getBean("conexion",Conexion.class);
+            con.getDb().close();
+        }
+    }//GEN-LAST:event_cierreVentana
 
     /**
      * @param args the command line arguments
@@ -278,11 +294,11 @@ public class UIPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UIPrincipal().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new UIPrincipal().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

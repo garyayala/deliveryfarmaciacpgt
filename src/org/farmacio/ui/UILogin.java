@@ -6,6 +6,7 @@
 package org.farmacio.ui;
 
 import javax.swing.JOptionPane;
+import org.farmacia.services.UsuarioService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -121,9 +122,13 @@ public class UILogin extends javax.swing.JFrame {
         if(null == applicationContext){
             JOptionPane.showMessageDialog(this, "Hubo un error al conectarse con el servidor","Ingreso",JOptionPane.ERROR_MESSAGE);
         }else{
-            
-            new UIPrincipal().setVisible(true);
-            this.dispose();
+            UsuarioService usuarioService = applicationContext.getBean("usuarioService",UsuarioService.class);
+            if(usuarioService.login(jTextField1.getText(), jPasswordField1.getText())){
+                new UIPrincipal(applicationContext).setVisible(true);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(this, "Los datos son incorrectos","Ingreso",JOptionPane.ERROR_MESSAGE);
+            }
         }
         
         

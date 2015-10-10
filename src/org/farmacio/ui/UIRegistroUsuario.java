@@ -5,16 +5,22 @@
  */
 package org.farmacio.ui;
 
+import java.util.Map;
+import javax.swing.JOptionPane;
+import org.farmacia.services.UsuarioService;
+import org.springframework.context.ApplicationContext;
+
 /**
  *
  * @author ZaidaPT
  */
 public class UIRegistroUsuario extends javax.swing.JInternalFrame {
-
+    private ApplicationContext applicationContext;
     /**
      * Creates new form UIUsuario
      */
-    public UIRegistroUsuario() {
+    public UIRegistroUsuario(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
     }
 
@@ -136,6 +142,11 @@ public class UIRegistroUsuario extends javax.swing.JInternalFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/farmacia/ui/iconos/Guardar.gif"))); // NOI18N
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/farmacia/ui/iconos/Eliminar.gif"))); // NOI18N
         jButton2.setText("Cancelar");
@@ -191,6 +202,17 @@ public class UIRegistroUsuario extends javax.swing.JInternalFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        UsuarioService usuarioService = applicationContext.getBean("usuarioService",UsuarioService.class);
+        Map<String,Object> response = usuarioService.registrar(jTextField3.getText(), jTextField8.getText(), jTextField6.getText(), jPasswordField2.getText());
+        
+        if(Boolean.parseBoolean(response.get("status").toString())){
+            JOptionPane.showMessageDialog(this, "El usuario se registro exitosamente","Ingreso",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, response.get("message"),"Ingreso",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
