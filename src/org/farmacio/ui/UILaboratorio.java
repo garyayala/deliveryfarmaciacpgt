@@ -135,6 +135,7 @@ public class UILaboratorio extends javax.swing.JInternalFrame {
         
         if(Boolean.parseBoolean(response.get("status").toString())){
             JOptionPane.showMessageDialog(this,"El laboratorio se registró exitosamente","Registro",JOptionPane.INFORMATION_MESSAGE);
+            jTextField2.setText("");
         }else{
             JOptionPane.showMessageDialog(this,response.get("message"),"Registro",JOptionPane.ERROR_MESSAGE);
         }

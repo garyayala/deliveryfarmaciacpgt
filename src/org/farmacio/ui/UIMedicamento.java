@@ -286,6 +286,10 @@ public class UIMedicamento extends javax.swing.JInternalFrame {
                         ,jComboBox2.getSelectedItem().toString());
         if(Boolean.parseBoolean(response.get("status").toString())){
             JOptionPane.showMessageDialog(this, "El medicamento se registró exitosamente","Registro",JOptionPane.INFORMATION_MESSAGE);
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField6.setText("");
         }else{
             JOptionPane.showMessageDialog(this,response.get("message"),"Registro",JOptionPane.ERROR_MESSAGE);
         }

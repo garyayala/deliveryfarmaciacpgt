@@ -382,6 +382,13 @@ public class UIPedido extends javax.swing.JInternalFrame {
         Map<String,Object> response = null;
         if(Boolean.parseBoolean(response.get("status").toString())){
             JOptionPane.showMessageDialog(this, "Hubo un error al generar el pedido","Registro",JOptionPane.INFORMATION_MESSAGE);
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("");
+            jTextField8.setText("");
         }else{
             JOptionPane.showMessageDialog(this,response.get("message"),"Registro",JOptionPane.ERROR_MESSAGE);
         }
