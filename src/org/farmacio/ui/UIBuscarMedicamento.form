@@ -66,7 +66,7 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/org/farmacio/ui/iconos/Buscar.gif"/>
+          <Image iconType="3" name="/org/farmacia/ui/iconos/Buscar.gif"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>

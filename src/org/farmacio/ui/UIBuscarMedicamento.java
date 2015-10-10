@@ -38,7 +38,7 @@ public class UIBuscarMedicamento extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Ingrese Dato:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/farmacio/ui/iconos/Buscar.gif"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/farmacia/ui/iconos/Buscar.gif"))); // NOI18N
         jButton1.setText("Buscar");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
