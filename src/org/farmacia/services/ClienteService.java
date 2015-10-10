@@ -1,6 +1,7 @@
 package org.farmacia.services;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.farmacia.domain.Cliente;
 import org.farmacia.repository.ClienteDAO;
@@ -39,4 +40,9 @@ public class ClienteService {
         return data;
         
     }
+    
+    public List<Cliente> listar(){
+        return clienteDAO.listar();
+    }
+            
 }

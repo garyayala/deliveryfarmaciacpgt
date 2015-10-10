@@ -14,7 +14,6 @@ import org.farmacia.domain.enumeration.MedicamentoTipo;
  * @author bruno
  */
 public class Medicamento extends Pojo{
-    private Lote lote;
     private String codigo;
     private String descripcion;
     private double precio_compra;
@@ -36,15 +35,6 @@ public class Medicamento extends Pojo{
         this.precio_compra = precio_compra;
     }
     
-
-    public Lote getLote() {
-        return lote;
-    }
-
-    public void setLote(Lote lote) {
-        this.lote = lote;
-    }
-
     public String getCodigo() {
         return codigo;
     }

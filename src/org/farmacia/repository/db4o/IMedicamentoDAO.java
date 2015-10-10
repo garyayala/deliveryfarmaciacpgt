@@ -62,7 +62,7 @@ public class IMedicamentoDAO implements MedicamentoDAO{
         try{
             Query query = conexion.getDb().query();
             query.constrain(Medicamento.class);
-            query.descend("descripcion").constrain(nombre.trim().toLowerCase());
+            query.descend("descripcion").constrain(nombre.trim().toLowerCase()).contains();
             
             medicamentos = query.execute();
         }catch(Exception ex){

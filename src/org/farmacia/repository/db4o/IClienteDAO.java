@@ -5,6 +5,8 @@
  */
 package org.farmacia.repository.db4o;
 
+import com.db4o.ObjectSet;
+import com.db4o.query.Query;
 import java.util.List;
 import org.farmacia.domain.Cliente;
 import org.farmacia.repository.ClienteDAO;
@@ -32,17 +34,38 @@ public class IClienteDAO implements ClienteDAO{
 
     @Override
     public List<Cliente> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Cliente> list = null;
+        
+        try{
+            Query query = conexion.getDb().query();
+            query.constrain(Cliente.class);
+            
+            list = query.execute();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+//            conexion.getDb().close();
+        }
+
+        return list;
     }
 
     @Override
-    public Cliente get(Integer clienteId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Cliente get(String valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Cliente get(String dni) {
+        try{
+            Cliente cliente = new Cliente();
+            cliente.setDni(dni);
+            
+            ObjectSet<Cliente> obj = conexion.getDb().queryByExample(cliente);
+            
+            System.out.println("obj:"+obj);
+            
+            return (null != obj && obj.size() > 0) ? obj.get(0) : null;
+        }catch(Exception e){
+            System.out.println("Excepcion: "+e.getMessage());
+        }
+        
+        return null;
     }
 
     @Autowired

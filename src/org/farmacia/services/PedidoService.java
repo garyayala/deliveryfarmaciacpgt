@@ -29,10 +29,10 @@ public class PedidoService {
     private @Autowired PedidoDAO pedidoDAO;
     private @Autowired ClienteDAO clienteDAO;
     
-    public Map<String,Object> registrar(String calle,String numero,Integer clienteId,String fechaStr){
+    public Map<String,Object> registrar(String calle,String numero,String clienteDni,String fechaStr){
         Map<String,Object> data = new HashMap<String,Object>();
         
-        Cliente cliente = clienteDAO.get(clienteId);
+        Cliente cliente = clienteDAO.get(clienteDni);
         
         if(null == cliente){
             data.put("status", false);

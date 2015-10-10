@@ -13,9 +13,9 @@ package org.farmacia.domain;
 import java.util.*;
 public class Cliente extends Persona{
     private int id_cliente;
-    private Date fecha_apertura;
     private String telefono;
-    private String email;
+    private String ruc;
+    private String celular;
 
     public int getId_cliente() {
         return id_cliente;
@@ -23,14 +23,6 @@ public class Cliente extends Persona{
 
     public void setId_cliente(int id_cliente) {
         this.id_cliente = id_cliente;
-    }
-
-    public Date getFecha_apertura() {
-        return fecha_apertura;
-    }
-
-    public void setFecha_apertura(Date fecha_apertura) {
-        this.fecha_apertura = fecha_apertura;
     }
 
     public String getTelefono() {
@@ -41,14 +33,21 @@ public class Cliente extends Persona{
         this.telefono = telefono;
     }
 
-    public String getEmail() {
-        return email;
+    public String getRuc() {
+        return ruc;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
     }
-    
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
     
     
 }

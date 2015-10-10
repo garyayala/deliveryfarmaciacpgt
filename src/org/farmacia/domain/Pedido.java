@@ -11,6 +11,7 @@ package org.farmacia.domain;
  * @author bruno
  */
 import java.util.*;
+import org.farmacia.domain.enumeration.MedioPago;
 import org.farmacia.domain.enumeration.PedidoStatus;
 
 public class Pedido extends Pojo{
@@ -18,9 +19,10 @@ public class Pedido extends Pojo{
     private Usuario usuario;
     private double precio_total;
     private Date fecha_pedido;
-    private TipoPago tipo_pago;
+    private MedioPago medioPago;
     private PedidoStatus status;
     private Direccion direccion;
+    private Cliente cliente;
 
     public Pedido() {
     }
@@ -72,6 +74,22 @@ public class Pedido extends Pojo{
 
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
+    }
+
+    public MedioPago getMedioPago() {
+        return medioPago;
+    }
+
+    public void setMedioPago(MedioPago medioPago) {
+        this.medioPago = medioPago;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
     

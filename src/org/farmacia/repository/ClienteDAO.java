@@ -15,6 +15,5 @@ import org.farmacia.domain.Cliente;
 public interface ClienteDAO {
     void registrar(Cliente cliente);
     List<Cliente> listar();
-    Cliente get(Integer clienteId);
     Cliente get(String valor);
 }

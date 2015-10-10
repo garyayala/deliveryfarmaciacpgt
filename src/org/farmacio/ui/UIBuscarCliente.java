@@ -5,6 +5,12 @@
  */
 package org.farmacio.ui;
 
+import java.util.List;
+import javax.swing.table.AbstractTableModel;
+import org.farmacia.domain.Cliente;
+import org.farmacia.domain.Usuario;
+import org.farmacia.services.ClienteService;
+import org.farmacia.services.UsuarioService;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -13,14 +19,28 @@ import org.springframework.context.ApplicationContext;
  */
 public class UIBuscarCliente extends javax.swing.JInternalFrame {
     private ApplicationContext applicationContext;
+    private UIPedido uIPedido;
     /**
      * Creates new form UIBuscarCliente
      */
-    public UIBuscarCliente(ApplicationContext applicationContext) {
+    public UIBuscarCliente(ApplicationContext applicationContext,UIPedido uIPedido) {
         this.applicationContext = applicationContext;
+        this.uIPedido = uIPedido;
         initComponents();
+        
+        this.uIPedido.setVisible(false);
+        
+        listarClientes();
     }
 
+    private void listarClientes(){
+        ClienteService clienteService = applicationContext.getBean("clienteService",ClienteService.class);
+        List<Cliente> clientes = clienteService.listar();
+
+        TableModel tableModel = new TableModel(clientes);
+        
+        jTable1.setModel(tableModel);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,4 +134,63 @@ public class UIBuscarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    private class TableModel extends AbstractTableModel{
+        private String[] headers = {"Nombre"
+                         ,"Apellidos"
+                         ,"Direccion"
+                         ,"DNI"
+                         };
+        private List<Cliente> data;
+
+        public TableModel(List<Cliente> data){
+            this.data = data ;
+        }
+		
+        @Override
+        public int getColumnCount() {
+                return this.headers.length;
+        }
+
+        @Override
+        public int getRowCount() {
+                return this.data.size();
+        }
+
+        @Override
+        public Object getValueAt(int fila, int columna) {
+                Object obj = null;
+                Cliente cliente = data.get(fila);
+
+                switch(columna){
+                    case 0:
+                        obj = cliente.getNombre();
+                        break;
+                    case 1:
+                        obj = cliente.getApellido();
+                        break;  
+                    case 2:
+                        obj = cliente.getDireccion();
+                        break;
+                    case 3:
+                        obj = cliente.getDni();
+                        break;
+                }
+                return obj;
+        }
+		
+        @Override
+        public String getColumnName(int column) {
+                return this.headers[column];
+        }	
+
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return columnIndex==4;
+        }
+		
+        public void filterData(List data){
+                this.data = data;
+                fireTableStructureChanged();
+        }
+    }
 }

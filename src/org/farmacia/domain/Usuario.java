@@ -11,22 +11,12 @@ package org.farmacia.domain;
  * @author bruno
  */
 public class Usuario {
-    private Cliente cliente;
     private String nombre;
     private String apellidos;
     private String usuario;
     private String password;
 
     public Usuario() {
-    }
-
-    
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public String getUsuario() {
