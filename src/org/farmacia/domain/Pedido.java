@@ -20,6 +20,7 @@ public class Pedido extends Pojo{
     private Date fecha_pedido;
     private TipoPago tipo_pago;
     private PedidoStatus status;
+    private Direccion direccion;
 
     public Pedido() {
     }
@@ -64,4 +65,14 @@ public class Pedido extends Pojo{
     public void setStatus(PedidoStatus status) {
         this.status = status;
     }
+
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+    
+    
 }

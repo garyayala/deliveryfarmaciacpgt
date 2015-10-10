@@ -5,12 +5,25 @@
  */
 package org.farmacio.ui;
 
+import javax.swing.JOptionPane;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 /**
  *
  * @author zaida.pacherres
  */
 public class UILogin extends javax.swing.JFrame {
+    private static ApplicationContext applicationContext;
     
+    static{
+        try{
+            applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+            
     /**
      * Creates new form UILogin
      */
@@ -105,8 +118,15 @@ public class UILogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new UIPrincipal().setVisible(true);
-        this.dispose();
+        if(null == applicationContext){
+            JOptionPane.showMessageDialog(this, "Hubo un error al conectarse con el servidor","Ingreso",JOptionPane.ERROR_MESSAGE);
+        }else{
+            
+            new UIPrincipal().setVisible(true);
+            this.dispose();
+        }
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
