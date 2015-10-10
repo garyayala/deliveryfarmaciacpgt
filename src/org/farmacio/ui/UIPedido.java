@@ -369,7 +369,7 @@ public class UIPedido extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        UIBuscarCliente uibc = new UIBuscarCliente();
+        UIBuscarCliente uibc = new UIBuscarCliente(applicationContext);
         this.getContentPane().add(uibc);
         uibc.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

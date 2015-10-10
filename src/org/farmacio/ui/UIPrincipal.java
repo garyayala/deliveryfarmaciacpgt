@@ -285,7 +285,7 @@ public class UIPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        UICliente uip = new UICliente();        
+        UICliente uip = new UICliente(applicationContext);        
         jDesktopPane1.add(uip);
         uip.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -297,25 +297,25 @@ public class UIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        UIMedicamento uim = new UIMedicamento();
+        UIMedicamento uim = new UIMedicamento(applicationContext);
         jDesktopPane1.add(uim);
         uim.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        UIBuscarPedido uimp = new UIBuscarPedido();
+        UIBuscarPedido uimp = new UIBuscarPedido(applicationContext);
         jDesktopPane1.add(uimp);
         uimp.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        UIPedido uip = new UIPedido();
+        UIPedido uip = new UIPedido(applicationContext);
         jDesktopPane1.add(uip);
         uip.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        UIBuscarCliente uibc = new UIBuscarCliente();
+        UIBuscarCliente uibc = new UIBuscarCliente(applicationContext);
         jDesktopPane1.add(uibc);
         uibc.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
