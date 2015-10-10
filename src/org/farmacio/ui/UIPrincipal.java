@@ -64,6 +64,7 @@ public class UIPrincipal extends javax.swing.JFrame {
         jMenu8 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem21 = new javax.swing.JMenuItem();
 
@@ -240,6 +241,14 @@ public class UIPrincipal extends javax.swing.JFrame {
         });
         jMenu9.add(jMenuItem22);
 
+        jMenuItem23.setText("Mostrar");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem23);
+
         jMenu8.add(jMenu9);
 
         jMenu10.setText("Distritos");
@@ -276,7 +285,7 @@ public class UIPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        UICliente uip = new UICliente();        
+        UICliente uip = new UICliente(applicationContext);        
         jDesktopPane1.add(uip);
         uip.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -288,25 +297,25 @@ public class UIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        UIMedicamento uim = new UIMedicamento();
+        UIMedicamento uim = new UIMedicamento(applicationContext);
         jDesktopPane1.add(uim);
         uim.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        UIBuscarPedido uimp = new UIBuscarPedido();
+        UIBuscarPedido uimp = new UIBuscarPedido(applicationContext);
         jDesktopPane1.add(uimp);
         uimp.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        UIPedido uip = new UIPedido();
+        UIPedido uip = new UIPedido(applicationContext);
         jDesktopPane1.add(uip);
         uip.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        UIBuscarCliente uibc = new UIBuscarCliente();
+        UIBuscarCliente uibc = new UIBuscarCliente(applicationContext);
         jDesktopPane1.add(uibc);
         uibc.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
@@ -339,6 +348,12 @@ public class UIPrincipal extends javax.swing.JFrame {
         jDesktopPane1.add(uibc);
         uibc.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        UIListarProvincias uibc = new UIListarProvincias(applicationContext);
+        jDesktopPane1.add(uibc);
+        uibc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -404,6 +419,7 @@ public class UIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

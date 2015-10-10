@@ -45,6 +45,6 @@ public class UIRuta  /*extends javax.swing.JInternalFrame*/{
     }
     
     public static void main(String[] args) {
-        new UIRuta();
+        new UIRuta(null);
     }
 }

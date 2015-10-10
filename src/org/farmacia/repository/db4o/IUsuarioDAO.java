@@ -8,7 +8,6 @@ package org.farmacia.repository.db4o;
 import com.db4o.ObjectSet;
 import com.db4o.query.Query;
 import java.util.List;
-import org.farmacia.domain.Provincia;
 import org.farmacia.domain.Usuario;
 import org.farmacia.repository.UsuarioDAO;
 import org.farmacia.repository.util.Conexion;
