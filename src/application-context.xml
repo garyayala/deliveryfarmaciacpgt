@@ -28,5 +28,14 @@
        <bean id="ubigeoDAO" class="org.farmacia.repository.db4o.IUbigeoDAO" >
            <property name="conexion" ref="conexion"/>
        </bean>
+       
+       <bean id="laboratorioDAO" class="org.farmacia.repository.db4o.ILaboratorioDAO" >
+           <property name="conexion" ref="conexion"/>
+       </bean>
+       
+       <bean id="medicamentoDAO" class="org.farmacia.repository.db4o.IMedicamentoDAO" >
+           <property name="conexion" ref="conexion"/>
+       </bean>
+       
        <context:component-scan base-package="org.farmacia" />
 </beans>

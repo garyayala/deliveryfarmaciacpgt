@@ -6,15 +6,27 @@
 
 package org.farmacia.domain;
 
+import java.util.Date;
+import org.farmacia.domain.enumeration.MedicamentoTipo;
+
 /**
  *
  * @author bruno
  */
-public class Medicamento {
+public class Medicamento extends Pojo{
     private Lote lote;
     private String codigo;
     private String descripcion;
     private double precio_compra;
+    private MedicamentoTipo medicamentoTipo;
+    private double precioVenta;
+    private Date fechaVencimiento;
+    private Laboratorio laboratorio;
+
+    public Medicamento() {
+    }
+    
+    
 
     public double getPrecio_compra() {
         return precio_compra;
@@ -47,6 +59,38 @@ public class Medicamento {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public MedicamentoTipo getMedicamentoTipo() {
+        return medicamentoTipo;
+    }
+
+    public void setMedicamentoTipo(MedicamentoTipo medicamentoTipo) {
+        this.medicamentoTipo = medicamentoTipo;
+    }
+
+    public double getPrecioVenta() {
+        return precioVenta;
+    }
+
+    public void setPrecioVenta(double precioVenta) {
+        this.precioVenta = precioVenta;
+    }
+
+    public Date getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(Date fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
+
+    public Laboratorio getLaboratorio() {
+        return laboratorio;
+    }
+
+    public void setLaboratorio(Laboratorio laboratorio) {
+        this.laboratorio = laboratorio;
     }
   
     
