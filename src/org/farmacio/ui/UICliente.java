@@ -11,7 +11,8 @@ package org.farmacio.ui;
  */
 import org.farmacia.domain.Cliente;
 import java.util.Date;
-import controlador.ControladorCliente;
+import java.util.Map;
+import javax.swing.JOptionPane;
 import org.farmacia.services.ClienteService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -304,7 +305,12 @@ public class UICliente extends javax.swing.JInternalFrame {
             ClienteService clienteService = applicationContext.getBean("clienteService",ClienteService.class);
             clienteService.nuevoCliente(clienteNuevo);
         }
-        
+        Map<String,Object> response = null;
+        if(Boolean.parseBoolean(response.get("status").toString())){
+            JOptionPane.showMessageDialog(this, "Hubo un error al guardar los datos","Registro",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this,response.get("message"),"Registro",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
