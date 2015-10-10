@@ -164,6 +164,11 @@ public class UIPrincipal extends javax.swing.JFrame {
 
         jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem14.setText("Reportar");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem14);
 
         jMenuBar1.add(jMenu2);
@@ -328,6 +333,12 @@ public class UIPrincipal extends javax.swing.JFrame {
         jDesktopPane1.add(uibc);
         uibc.setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        UIListarUsuarios uibc = new UIListarUsuarios(applicationContext);
+        jDesktopPane1.add(uibc);
+        uibc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     /**
      * @param args the command line arguments

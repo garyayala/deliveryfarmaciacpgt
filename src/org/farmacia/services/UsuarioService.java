@@ -6,6 +6,7 @@
 package org.farmacia.services;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.farmacia.domain.Usuario;
 import org.farmacia.repository.UsuarioDAO;
@@ -47,5 +48,9 @@ public class UsuarioService {
         }
         
         return data;
+    }
+    
+    public List<Usuario> listar(){
+        return usuarioDAO.listar();
     }
 }

@@ -5,6 +5,7 @@
  */
 package org.farmacia.repository;
 
+import java.util.List;
 import org.farmacia.domain.Usuario;
 
 /**
@@ -14,4 +15,5 @@ import org.farmacia.domain.Usuario;
 public interface UsuarioDAO {
     boolean login(Usuario usuario);
     void registrar(Usuario usuario);
+    List<Usuario> listar();
 }
