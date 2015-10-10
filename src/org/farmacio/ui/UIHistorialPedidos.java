@@ -28,6 +28,8 @@ public class UIHistorialPedidos extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Historial de Pedidos"));
+        setClosable(true);
+        setMaximizable(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -45,6 +45,8 @@ public class UIProvincia extends javax.swing.JInternalFrame {
         jLabel1.setText("jLabel1");
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de Provincia"));
+        setClosable(true);
+        setMaximizable(true);
 
         jLabel2.setText("ID:");
 
