@@ -5,6 +5,11 @@
  */
 package org.farmacia.services;
 
+import java.util.HashMap;
+import java.util.Map;
+import org.farmacia.domain.Usuario;
+import org.farmacia.repository.UsuarioDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +18,34 @@ import org.springframework.stereotype.Service;
  */
 @Service(value = "usuarioService")
 public class UsuarioService {
-    public boolean login(String usuario,String password){
-        return true;
+    private @Autowired UsuarioDAO usuarioDAO;
+    
+    public boolean login(String username,String password){
+        Usuario usuario = new Usuario();
+        usuario.setUsuario(username);
+        usuario.setPassword(password);
+        
+        return usuarioDAO.login(usuario);
+    }
+    
+    public Map<String,Object> registrar(String nombres,String apellidos,String username,String password){
+        Map<String,Object> data = new HashMap<String,Object>();
+        
+        try{
+            Usuario usuario =  new Usuario();
+            usuario.setUsuario(username);
+            usuario.setNombre(nombres);
+            usuario.setApellidos(apellidos);
+            usuario.setPassword(password);
+            
+            usuarioDAO.registrar(usuario);
+            
+            data.put("status", true);
+        }catch(Exception ex){
+            data.put("status", false);
+            data.put("message", "Hubo un error al registrar el usuario:"+ex.getMessage());
+        }
+        
+        return data;
     }
 }

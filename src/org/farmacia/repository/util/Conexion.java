@@ -24,7 +24,7 @@ public class Conexion {
     
     public ObjectContainer connectionDB(){
         db = Db4oEmbedded.openFile(Db4oEmbedded
-                .newConfiguration(), "D:\\upao\\documents\\poo\\plazapoints.db");
+                .newConfiguration(), "D:\\upao\\documents\\poo\\farmacia.db");
         
         return db;
     }

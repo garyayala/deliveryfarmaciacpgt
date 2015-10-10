@@ -5,16 +5,20 @@
  */
 package org.farmacio.ui;
 
+import org.farmacia.repository.util.Conexion;
+import org.springframework.context.ApplicationContext;
+
 /**
  *
  * @author ZaidaPT
  */
 public class UIPrincipal extends javax.swing.JFrame {
-
+    private ApplicationContext applicationContext;
     /**
      * Creates new form UIPrincipal
      */
-    public UIPrincipal() {
+    public UIPrincipal(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
     }
 
@@ -33,6 +37,8 @@ public class UIPrincipal extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem20 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -55,7 +61,6 @@ public class UIPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -66,6 +71,11 @@ public class UIPrincipal extends javax.swing.JFrame {
         jMenuItem12.setText("jMenuItem12");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                cierreVentana(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -77,6 +87,18 @@ public class UIPrincipal extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 680, Short.MAX_VALUE)
         );
+
+        jMenu7.setText("Archivo");
+
+        jMenuItem20.setText("Cerrar sesión");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem20);
+
+        jMenuBar1.add(jMenu7);
 
         jMenu1.setText("Clientes");
 
@@ -196,9 +218,6 @@ public class UIPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
-        jMenu7.setText("Cerrar Sesión");
-        jMenuBar1.add(jMenu7);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -225,7 +244,7 @@ public class UIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        UIRegistroUsuario uiu = new UIRegistroUsuario();
+        UIRegistroUsuario uiu = new UIRegistroUsuario(applicationContext);
         jDesktopPane1.add(uiu);
         uiu.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -253,6 +272,17 @@ public class UIPrincipal extends javax.swing.JFrame {
         jDesktopPane1.add(uibc);
         uibc.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void cierreVentana(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_cierreVentana
+        if(null != applicationContext){
+            Conexion con = applicationContext.getBean("conexion",Conexion.class);
+            con.getDb().close();
+        }
+    }//GEN-LAST:event_cierreVentana
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,11 +312,11 @@ public class UIPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UIPrincipal().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new UIPrincipal().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -312,6 +342,7 @@ public class UIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
