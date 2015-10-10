@@ -7,17 +7,20 @@ package org.farmacio.ui;
 
 import java.util.Map;
 import javax.swing.JOptionPane;
+import org.farmacia.services.UbigeoService;
+import org.springframework.context.ApplicationContext;
 
 /**
  *
  * @author ZaidaPT
  */
 public class UIProvincia extends javax.swing.JInternalFrame {
-
+    private ApplicationContext applicationContext;
     /**
      * Creates new form UIProvincia
      */
-    public UIProvincia() {
+    public UIProvincia(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
     }
 
@@ -130,9 +133,12 @@ public class UIProvincia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Map<String,Object> response = null;
+        UbigeoService ubigeoService = applicationContext.getBean("ubigeoService",UbigeoService.class);
+        
+        Map<String,Object> response = ubigeoService.registrarProvincia(jTextField2.getText());
+        
         if(Boolean.parseBoolean(response.get("status").toString())){
-            JOptionPane.showMessageDialog(this, "Hubo un error al registrar la provincia","Registro",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "La provincia se registró exitosamente","Registro",JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(this,response.get("message"),"Registro",JOptionPane.ERROR_MESSAGE);
         }

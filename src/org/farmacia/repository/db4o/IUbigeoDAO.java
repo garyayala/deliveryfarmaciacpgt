@@ -61,6 +61,31 @@ public class IUbigeoDAO implements UbigeoDAO{
     public void setConexion(Conexion conexion) {
         this.conexion = conexion;
     }
+
+    @Override
+    public void registrarProvincia(Provincia provincia) {
+        try{
+            conexion.getDb().store(provincia);
+            conexion.getDb().commit();
+        }catch(Exception e){
+            System.out.println("Excepction: "+e.getMessage());
+            e.printStackTrace();
+        }finally{
+            conexion.getDb().close();
+        }
+    }
+
+    @Override
+    public void registrarDistrito(Distrito distrito) {
+        try{
+            conexion.getDb().store(distrito);
+            conexion.getDb().commit();
+        }catch(Exception e){
+            System.out.println("Excepcion: "+e.getMessage());
+        }finally{
+            conexion.getDb().close();
+        }
+    }
  
     
 }

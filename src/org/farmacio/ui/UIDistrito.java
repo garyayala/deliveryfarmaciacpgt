@@ -7,17 +7,20 @@ package org.farmacio.ui;
 
 import java.util.Map;
 import javax.swing.JOptionPane;
+import org.farmacia.services.UbigeoService;
+import org.springframework.context.ApplicationContext;
 
 /**
  *
  * @author ZaidaPT
  */
 public class UIDistrito extends javax.swing.JInternalFrame {
-
+    private ApplicationContext applicationContext;
     /**
      * Creates new form UIDistrito
      */
-    public UIDistrito() {
+    public UIDistrito(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
         initComponents();
     }
 
@@ -141,11 +144,14 @@ public class UIDistrito extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Map<String,Object> response = null;
+        UbigeoService ubigeoService = applicationContext.getBean("ubigeoService",UbigeoService.class);
+        
+        Map<String,Object> response = ubigeoService.registrarDistrito(jTextField2.getText(), jComboBox1.getSelectedItem().toString());
+        
         if(Boolean.parseBoolean(response.get("status").toString())){
-            JOptionPane.showMessageDialog(this, "Hubo un error al registrar el distrito","Registro",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,response.get("message"),"Registro",JOptionPane.INFORMATION_MESSAGE);
         }else{
-            JOptionPane.showMessageDialog(this,response.get("message"),"Registro",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Hubo un error al registrar el distrito","Registro",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
