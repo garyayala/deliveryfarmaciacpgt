@@ -5,8 +5,13 @@
  */
 package org.farmacio.ui;
 
+import java.util.List;
 import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import org.farmacia.domain.Distrito;
+import org.farmacia.domain.Provincia;
+import org.farmacia.services.UbigeoService;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -21,8 +26,23 @@ public class UIPedido extends javax.swing.JInternalFrame {
     public UIPedido(ApplicationContext applicationContext) {
         initComponents();
         this.applicationContext = applicationContext;
+        cargarDistritos();
     }
 
+    private void cargarDistritos(){
+        UbigeoService ubigeoService = applicationContext.getBean("ubigeoService",UbigeoService.class);
+        List<Distrito> distritos = ubigeoService.listarDistritos("Piura");
+        
+        DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel();
+        
+        if(null != distritos){
+            for(Distrito distrito : distritos){
+                defaultComboBoxModel.addElement(distrito.getNombre());
+            }
+        }
+        
+        jComboBox3.setModel(defaultComboBoxModel);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
