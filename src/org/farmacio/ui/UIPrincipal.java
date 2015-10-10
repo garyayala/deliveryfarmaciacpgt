@@ -191,6 +191,11 @@ public class UIPrincipal extends javax.swing.JFrame {
 
         jMenuItem15.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem15.setText("Buscar");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem15);
 
         jMenuItem16.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
@@ -404,6 +409,12 @@ public class UIPrincipal extends javax.swing.JFrame {
         jDesktopPane1.add(uibc);
         uibc.setVisible(true);
     }//GEN-LAST:event_jMenuItem26ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        UIBuscarMedicamento uibc = new UIBuscarMedicamento(applicationContext);
+        jDesktopPane1.add(uibc);
+        uibc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     /**
      * @param args the command line arguments

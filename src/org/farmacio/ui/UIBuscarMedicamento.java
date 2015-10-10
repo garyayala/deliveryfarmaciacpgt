@@ -5,6 +5,11 @@
  */
 package org.farmacio.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.AbstractTableModel;
+import org.farmacia.domain.Medicamento;
+import org.farmacia.services.MedicamentoService;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -13,14 +18,27 @@ import org.springframework.context.ApplicationContext;
  */
 public class UIBuscarMedicamento extends javax.swing.JInternalFrame {
     private ApplicationContext applicationContext;
+    private TableModel tableModel;
     /**
      * Creates new form UIBuscarMedicamento
      */
     public UIBuscarMedicamento(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
         initComponents();
+        cargarMedicamentos();
     }
 
+    private void cargarMedicamentos(){
+        MedicamentoService medicamentoService = applicationContext.getBean("medicamentoService",MedicamentoService.class);
+        List<Medicamento> medicamentos = medicamentoService.listar();
+        
+        if(null == medicamentos){
+            medicamentos = new ArrayList<Medicamento>();
+        }
+        
+        tableModel = new TableModel(medicamentos);
+        jTable1.setModel(tableModel);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,6 +62,11 @@ public class UIBuscarMedicamento extends javax.swing.JInternalFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/farmacia/ui/iconos/Buscar.gif"))); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -64,15 +87,17 @@ public class UIBuscarMedicamento extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(30, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(69, 69, 69))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,11 +109,18 @@ public class UIBuscarMedicamento extends javax.swing.JInternalFrame {
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        MedicamentoService medicamentoService = applicationContext.getBean("medicamentoService",MedicamentoService.class);
+        List<Medicamento> medicamentos = medicamentoService.listar(jTextField1.getText());
+        
+        tableModel.filterData(medicamentos);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -98,4 +130,67 @@ public class UIBuscarMedicamento extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    private class TableModel extends AbstractTableModel{
+        private String[] headers = {"Nombre"
+                        ,"Tipo"
+                        ,"Laboratorio"
+                        ,"Precio venta"
+                        ,"Fecha vencimiento"
+                        ,"Stock"
+                         };
+        private List<Medicamento> data;
+
+        public TableModel(List data){
+            this.data = data ;
+        }
+		
+        @Override
+        public int getColumnCount() {
+                return this.headers.length;
+        }
+
+        @Override
+        public int getRowCount() {
+            return this.data.size();
+        }
+
+        @Override
+        public Object getValueAt(int fila, int columna) {
+            Medicamento medicamento = data.get(fila);
+            Object o = null;
+            
+            switch(columna){
+                case 0:
+                    o = medicamento.getDescripcion();
+                    break;
+                case 1:
+                    o = medicamento.getMedicamentoTipo().getNombre();
+                    break;
+                case 2:
+                    o = medicamento.getLaboratorio().getNombre();
+                    break;
+                case 3:
+                    o = medicamento.getPrecioVenta();
+                    break;
+                case 4:
+                    o = medicamento.getFechaVencimiento();
+                    break;
+                case 5:
+                    o = 0;
+                    break;
+            }
+            
+            return o;
+        }
+		
+        @Override
+        public String getColumnName(int column) {
+            return this.headers[column];
+        }
+		
+        public void filterData(List data){
+            this.data = data;
+            fireTableStructureChanged();
+        }
+    }
 }

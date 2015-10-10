@@ -25,14 +25,6 @@ public class UICliente extends javax.swing.JInternalFrame {
         this.applicationContext = applicationContext;
         initComponents();
     }
-    
-    static{
-        try{
-            applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -293,7 +285,6 @@ public class UICliente extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        System.out.println("LLenando Objeto");
         Cliente clienteNuevo = new Cliente();
         clienteNuevo.setApellido(txtApellido.getText());
         clienteNuevo.setNombre(txtNombre.getText());
@@ -302,13 +293,12 @@ public class UICliente extends javax.swing.JInternalFrame {
         clienteNuevo.setTelefono(txtTelefono.getText());
         clienteNuevo.setFecha_apertura(new Date());
         
-        if(null != applicationContext){
-            ClienteService clienteService = applicationContext.getBean("clienteService",ClienteService.class);
-            clienteService.nuevoCliente(clienteNuevo);
-        }
+        ClienteService clienteService = applicationContext.getBean("clienteService",ClienteService.class);
+        clienteService.nuevoCliente(clienteNuevo);
+
         Map<String,Object> response = null;
         if(Boolean.parseBoolean(response.get("status").toString())){
-            JOptionPane.showMessageDialog(this, "Hubo un error al guardar los datos","Registro",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El Cliente fue registrado exitosamente","Registro",JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(this,response.get("message"),"Registro",JOptionPane.ERROR_MESSAGE);
         }

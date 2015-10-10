@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.farmacia.domain.Laboratorio;
 import org.farmacia.domain.Medicamento;
@@ -60,5 +61,13 @@ public class MedicamentoService {
         }
         
         return data;
+    }
+    
+    public List<Medicamento> listar(){
+        return medicamentoDAO.listar();
+    }
+    
+    public List<Medicamento> listar(String nombre){
+        return medicamentoDAO.listar(nombre);
     }
 }
